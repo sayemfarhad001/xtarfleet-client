@@ -1,0 +1,31 @@
+@use "../../styles/partials.scss";
+
+body {
+    background: partials.$blue;
+
+}
+a.link {
+    font-size: 30px;
+    color: partials.$yellow;
+    position: relative;
+    margin-left: 20rem;
+}
+a.link:link {color:partials.$yellow;}
+a.link:visited {color:partials.$yellow;}
+a.link:hover {
+    color:partials.$blue;
+    background-color: partials.$yellow;
+    border-radius: 5px;
+    font-size:110%;       
+}
+
+#canvas {
+    position: relative;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 900px;
+    height: 600px;
+    background: white;
+    font-family: 'Orbitron', sans-serif;
+}

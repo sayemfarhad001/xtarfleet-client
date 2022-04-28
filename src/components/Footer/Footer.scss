@@ -1,0 +1,18 @@
+@use '../../styles/partials.scss';
+
+.footer-text {
+    background-color: partials.$yellow;
+    color: partials.$Slate;
+    display: flex;
+    justify-content: center;
+    margin: 10rem auto 0 auto;
+    padding: 3rem 0;
+    width: 100%;
+    @include partials.mBodySmall;
+}
+
+@media (min-width: partials.$screen-tablet-min) {
+    .footer-text {
+        margin: 6rem auto 0 auto;
+    }
+}
