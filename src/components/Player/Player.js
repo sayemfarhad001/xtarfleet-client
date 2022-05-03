@@ -8,8 +8,8 @@ import "../Leaderboard/Leaderboard";
 // import deleteIcon from "../../assets/icons/delete_outline-24px.svg";
 // import close from "../../assets/icons/close-24px.svg";
 import chevron from "../../assets/icons/chevron_right-24px.svg";
-import { Link } from "react-router-dom";
-// import InventoryItemDetails from './PlayerItemDetails'
+import { Route, Link } from "react-router-dom";
+import PlayerDetails from '../PlayerDetails/PlayerDetails'
 // import { Route, Switch} from "react-router-dom";
 
 export default class Player extends Component {
@@ -66,11 +66,16 @@ export default class Player extends Component {
                         <div className="player__item">
                             <Link
                                 className="player__link"
-                                to={`players/${id}`}
+                                to={`/players/${id}`}
                             >
                             <p>{playerName}</p>
                             <img className="player__item__image" alt="chevron" src={chevron} />
                             </Link>
+                            {/* <Route
+                                path={`/players/:id`}
+                                render={(props) => <PlayerDetails match={props.match}/>}
+                                // component={PlayerDetails}
+                            /> */}
                         </div>
                     </div>
                     <div className="player__points">

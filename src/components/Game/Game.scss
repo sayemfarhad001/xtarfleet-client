@@ -1,5 +1,8 @@
 @use "../../styles/partials.scss";
-
+// .up{
+//     z-index: 20;
+// color: white;
+// }
 body {
     background: partials.$blue;
 
@@ -16,7 +19,7 @@ a.link:hover {
     color:partials.$blue;
     background-color: partials.$yellow;
     border-radius: 5px;
-    font-size:110%;       
+    // font-size:110%;       
 }
 
 #canvas {

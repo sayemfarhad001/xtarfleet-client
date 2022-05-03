@@ -4,7 +4,7 @@ import axios from "axios";
 import API from "../../components/API/API";
 import "./PlayerForm.scss";
 import error from "../../assets/icons/error-24px.svg";
-
+// import { Link } from "react-router-dom"
 const lookup = require('country-code-lookup')
 
 class PlayerForm extends Component {
@@ -87,12 +87,12 @@ class PlayerForm extends Component {
   }
 
   render() {
-    let levelDecide;
-    if (this.state.status === "Legendary") {
-      levelDecide = "playerForm__time-container--hide";
-    } else {
-      levelDecide = "playerForm__time-container";
-    }
+    // let levelDecide;
+    // if (this.state.status === "Legendary") {
+    //   levelDecide = "playerForm__time-container--hide";
+    // } else {
+    //   levelDecide = "playerForm__time-container";
+    // }
     return (
       <div className="addPlayer">
         <div className="playerForm__header">
@@ -294,21 +294,23 @@ class PlayerForm extends Component {
                   hidden
                   value="N/A"
                 >
-                  Please Select
+                  Please Select country
                 </option>
+                
                 {
-                lookup.countries.map((country) => {
-                  return (
-                    <option
-                      key={country}
-                      className="playerForm__form--option"
-                      value={country}
-                    >
-                      {country}
-                    </option>
-                  );
+                  lookup.countries.map((country) => {
+                    return (
+                      <option
+                        key={country.iso3}
+                        className="playerForm__form--option"
+                        value={country.country}
+                      >
+                        {country.country}
+                      </option>
+                    );
+                  }
+                )
                 }
-                )}
               </select>
               {this.state.countryError ? (
                 <div className="playerForm__error">

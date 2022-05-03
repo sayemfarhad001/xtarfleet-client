@@ -2,15 +2,15 @@ import './Game.scss';
 import * as React from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
+import API from "../API/API"
 
-
-function Game() {
-
+function Game({ playerName, points, id }) {
+    // const [playerName, setPlayerName] = React.useState('');
     const canvasRef = React.useRef(null);
-    
+    console.log(playerName, id)
     // React.useEffect(() => {
-        
-    // }, [username]);
+    //     return(<p className='up'>welcome ${playerName}</p>)
+    // }, [playerName]);
 
     React.useEffect(() => {
         const canvas = canvasRef.current
@@ -377,6 +377,7 @@ function Game() {
                 enemies[i].draw();
                 if (enemies[i].x < 0){
                     gameOver = true;
+                    /////////////////////////FUNCTION TO END GAME AND API CALL
                 }
                 if (enemies[i].health <= 0){
                     let gainedResources = enemies[i].maxHealth/10;
@@ -439,10 +440,14 @@ function Game() {
             ctx.font = '30px Orbitron';
             ctx.fillText('Score: ' + score, 180, 40);
             ctx.fillText('Resources: ' + numberOfResources, 180, 80);
+            
             if (gameOver){
+                console.log (score + playerName)
+                 
                 ctx.fillStyle = 'black';
                 ctx.font = '90px Orbitron';
                 ctx.fillText('GAME OVER', 135, 330);
+
             }
             if (score >= winningScore && enemies.length === 0){
                 ctx.fillStyle = 'black';
@@ -451,19 +456,25 @@ function Game() {
                 ctx.font = '30px Orbitron';
                 ctx.fillText('You win with ' + score + ' points!', 134, 340);
                 
-                axios.post('/user', {
-                    firstName: 'Fred',
-                    finalScore: score
+
+                console.log (score , playerName)
+               
+                return axios.put(`${API.server}/${API.players}/${id}`, {
+                    playerName: playerName,
+                    points: score,
+                    id: id
                 })
-                    .then(function (response) {
+                .then(function (response) {
                     console.log(response);
                 })
                     .catch(function (error) {
                     console.log(error);
                 });
+
             }
         }
-
+        
+ 
         //////////////////////////////////////////
         canvas.addEventListener('click', function(){
             const gridPositionX = mouse.x - (mouse.x % cellSize) + cellGap; //cell Gap is added to prevent collision when not required, such as end collision
@@ -517,10 +528,10 @@ function Game() {
         })
 
 
-    }, []);
+    }, [playerName, id]);
     
     return (
-        <div>
+        <div className='game'>
             <canvas
                 id="canvas"
                 ref={canvasRef}
