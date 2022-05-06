@@ -7,14 +7,15 @@ import { Routes,Switch, Route, BrowserRouter } from 'react-router-dom';
 import classNames from "classnames";
 
 export default class AddPlayerPage extends Component {
-state = {
-    playerName: "",
-    displayModal: false,
-}    
+// state = {
+//     playerName: "",
+//     displayModal: false,
+// }    
 
 
 submitHandler = (formData) => {
-    this.setState({ playerName: formData.playerName })
+    // this.setState({ playerName: formData.playerName })
+    this.props.setPlayerName(formData.playerName)
     axios.post(`${API.server}/${API.players}`, formData)
     .then(() => {
         this.props.history.push(`/xtarfleet`)  
@@ -30,26 +31,26 @@ routeClickHandler = () => {
     this.props.history.goBack()
 }
     render() {
-        const classes = {
-            modal: "game__modal",
-            hidden: "hidden",
-            display: "display",
-          };
+    //     const classes = {
+    //         modal: "game__modal",
+    //         hidden: "hidden",
+    //         display: "display",
+    //       };
       
-          let modalClass = classNames(classes.modal, classes.hidden);
+    //       let modalClass = classNames(classes.modal, classes.hidden);
       
-          //Toggle modal on click function
-          const toggleModal = () => {
-            if (this.state.displayModal) {
-              this.setState({ displayModal: false });
-              return;
-            }
-            this.setState({ displayModal: true });
-          };
-              //if statement to check for modal on re-render
-    if (this.state.displayModal) {
-        modalClass = classNames(classes.modal, classes.display);
-      }
+    //       //Toggle modal on click function
+    //       const toggleModal = () => {
+    //         if (this.state.displayModal) {
+    //           this.setState({ displayModal: false });
+    //           return;
+    //         }
+    //         this.setState({ displayModal: true });
+    //       };
+    //           //if statement to check for modal on re-render
+    // if (this.state.displayModal) {
+    //     modalClass = classNames(classes.modal, classes.display);
+    //   }
 
 
 
@@ -57,6 +58,7 @@ routeClickHandler = () => {
 
 return (
 <div>            {console.log(this.props)}
+            
             <PlayerForm
                 title="Add New Player"
                 handleSubmit={this.submitHandler} 
@@ -64,8 +66,8 @@ return (
                 handleClick={this.clickHandler}
                 backClick = {this.routeClickHandler}
                 // route="/player"
-                gamePlayer={this.state.playerName}
-                toggleModal={toggleModal}
+                playerName={this.props.playerName}
+                // toggleModal={toggleModal}
             />
             {/* <Game playerName={this.props.playerName} modalClass={modalClass}/> */}
             {/* <BrowserRouter>

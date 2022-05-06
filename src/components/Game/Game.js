@@ -5,9 +5,11 @@ import { Link } from "react-router-dom";
 import API from "../API/API"
 
 function Game({ playerName, points, id }) {
+
     // const [playerName, setPlayerName] = React.useState('');
+    
     const canvasRef = React.useRef(null);
-    console.log(playerName, id)
+    // console.log(playerName, id)
     // React.useEffect(() => {
     //     return(<p className='up'>welcome ${playerName}</p>)
     // }, [playerName]);
