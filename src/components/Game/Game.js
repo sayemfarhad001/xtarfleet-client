@@ -3,11 +3,15 @@ import * as React from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import API from "../API/API"
+import Leaderboard from '../Leaderboard/Leaderboard';
+function Game({ playerName, id, setId, 
+    // updated, state 
+}) {
 
-function Game({ playerName, points, id }) {
     // const [playerName, setPlayerName] = React.useState('');
+    
     const canvasRef = React.useRef(null);
-    console.log(playerName, id)
+    // console.log(playerName, id)
     // React.useEffect(() => {
     //     return(<p className='up'>welcome ${playerName}</p>)
     // }, [playerName]);
@@ -442,7 +446,7 @@ function Game({ playerName, points, id }) {
             ctx.fillText('Resources: ' + numberOfResources, 180, 80);
             
             if (gameOver){
-                console.log (score + playerName)
+                console.log (score +' '+ playerName +' '+ id)
                  
                 ctx.fillStyle = 'black';
                 ctx.font = '90px Orbitron';
@@ -450,27 +454,34 @@ function Game({ playerName, points, id }) {
 
             }
             if (score >= winningScore && enemies.length === 0){
-                ctx.fillStyle = 'black';
+                ctx.fillStyle = 'gold';
                 ctx.font = '60px Orbitron';
+                ctx.fillText('Congrats ' + playerName + ' !', 130, 240);
+                ctx.fillStyle = 'black';
                 ctx.fillText('LEVEL COMPLETE', 130, 300);
                 ctx.font = '30px Orbitron';
                 ctx.fillText('You win with ' + score + ' points!', 134, 340);
-                
-
-                console.log (score , playerName)
+                 
+                // console.log (score , playerName, id)
                
                 return axios.put(`${API.server}/${API.players}/${id}`, {
                     playerName: playerName,
                     points: score,
-                    id: id
+                    time: '9.99'
                 })
                 .then(function (response) {
+                    // updated({ updated: true })
+                    // setId(response.id);
+
+                    // if(state){
+                    //     return <Leaderboard />
+                    // }
                     console.log(response);
                 })
                     .catch(function (error) {
                     console.log(error);
                 });
-
+                
             }
         }
         
@@ -528,7 +539,7 @@ function Game({ playerName, points, id }) {
         })
 
 
-    }, [playerName, id]);
+    }, [playerName, id, setId]);
     
     return (
         <div className='game'>
