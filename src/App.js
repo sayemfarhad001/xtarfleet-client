@@ -29,20 +29,34 @@ function App (){
         <BrowserRouter>
           <Switch>
             <Route exact path="/" component={HomePage} />
-            <Route exact path="/xtarfleet" render={(props) => <Game playerName={playerName} id={id} match={props.match} />} />
+            <Route exact 
+              path="/newplayer" 
+              render={ (props) => 
+                <AddPlayerPage 
+                  playerName={playerName}
+                  setPlayerName={setPlayerName} 
+                  id={id} 
+                  setId={setId}
+                  // collectPlayer={this.collectPlayer} 
+                  match={props.match} 
+                />
+              }
+            >
+              
+            </Route>
+            <Route exact 
+                path="/xtarfleet" 
+                render={ (props) => 
+                  <Game 
+                    playerName={playerName} 
+                    id={id} 
+                    match={props.match} 
+                  />
+                } 
+              />
             <Route exact path="/about" component={AboutPage} />
             <Route exact path="/contact" component={ContactPage} />
-            <Route exact path="/newplayer" 
-
-            render={(props) => <AddPlayerPage 
-              playerName={playerName}
-              setPlayerName={setPlayerName} 
-              id={id} 
-              setId={setId}
-              // collectPlayer={this.collectPlayer} 
-              match={props.match} />}
-            />
-
+            
 
 
 {/* // component={AddPlayerPage}  */}

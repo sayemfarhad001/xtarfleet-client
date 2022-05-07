@@ -12,15 +12,16 @@ class PlayerForm extends Component {
     players: [],
     playerName: "",
     description: "",
-    points: "N/A",
+    points: 0,
     status: null,
     time: 0,
     country: "N/A",
+
     nameError: "",
     desError: "",
-    pointsError: "",
-    statusError: "",
-    timeError: "",
+    // pointsError: "",
+    // statusError: "",
+    // timeError: "",
     countryError: "",
 
     ...this.props.initialFormData,
@@ -84,6 +85,18 @@ class PlayerForm extends Component {
         });
       })
       .catch((err) => console.log("error!", err));
+  }
+
+  componentDidUpdate(){
+    // axios
+    // .get(`${API.server}/${API.players}`)
+    // .then((response) => {
+    //   console.log(response.data)
+    //   this.setState({
+    //     players: response.data,
+    //   });
+    // })
+    // .catch((err) => console.log("error!", err));
   }
 
   render() {

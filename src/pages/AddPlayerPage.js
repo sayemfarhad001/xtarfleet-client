@@ -4,78 +4,131 @@ import axios from 'axios'
 import API from "../components/API/API";
 import Game from "../components/Game/Game"
 import { Routes,Switch, Route, BrowserRouter } from 'react-router-dom';
-import classNames from "classnames";
+// import classNames from "classnames";
 
 export default class AddPlayerPage extends Component {
-// state = {
-//     playerName: "",
-//     displayModal: false,
-// }    
+    state = {
+        submitted: false,
+        // updated: false,
+
+        // playerName: "",
+        // displayModal: false,
+    }    
+
+    submitHandler = (formData) => {
+        // this.setState({ playerName: formData.playerName })
+        this.props.setPlayerName(formData.playerName)
+        
+        // console.log(this.props.id)
+        axios.post(`${API.server}/${API.players}`, formData)
+        .then((response) => {
+            this.setState({submitted: true})
+            // this.setState({posted: true})
+            this.props.setId(response.data.id)
+        
+            // this.props.history.push(`/xtarfleet`) 
+            // console.log(response.data.id)
+            // this.props.setId(formData.id) 
+        })    
+        .catch((err) => {
+            console.log(err)
+        })
+
+        // if (!this.state.posted)
+        // axios.get(`${API.server}/${API.players}`)            
+        //     .then((response) => {
+        //         let n = response.data.length - 1;
+        //         console.log(response.data[n]);
+        //         return this.setState({posted: false})
+        //         // this.props.setState({
+        //         //     players: response.data,
+        //         // });
+        //     })
+        //     .catch((err) => console.log("error!", err));
 
 
-submitHandler = (formData) => {
-    // this.setState({ playerName: formData.playerName })
-    this.props.setPlayerName(formData.playerName)
-    axios.post(`${API.server}/${API.players}`, formData)
-    .then(() => {
-        this.props.history.push(`/xtarfleet`)  
-    })    
-    .catch((err) => {
-        console.log(err)
-    })
-}
-clickHandler = () => {
-    this.props.history.push(`/${API.players}`)
-}
-routeClickHandler = () => {
-    this.props.history.goBack()
-}
+    }
+
+    clickHandler = () => {
+        this.props.history.push(`/${API.players}`)
+    }
+
+    routeClickHandler = () => {
+        this.props.history.goBack()
+    }
+
     render() {
-    //     const classes = {
-    //         modal: "game__modal",
-    //         hidden: "hidden",
-    //         display: "display",
-    //       };
-      
-    //       let modalClass = classNames(classes.modal, classes.hidden);
-      
-    //       //Toggle modal on click function
-    //       const toggleModal = () => {
-    //         if (this.state.displayModal) {
-    //           this.setState({ displayModal: false });
-    //           return;
-    //         }
-    //         this.setState({ displayModal: true });
-    //       };
-    //           //if statement to check for modal on re-render
-    // if (this.state.displayModal) {
-    //     modalClass = classNames(classes.modal, classes.display);
-    //   }
-
-
-
-
-
-return (
-<div>            {console.log(this.props)}
-            
-            <PlayerForm
-                title="Add New Player"
-                handleSubmit={this.submitHandler} 
-                button="+ Add Player" 
-                handleClick={this.clickHandler}
-                backClick = {this.routeClickHandler}
-                // route="/player"
-                playerName={this.props.playerName}
-                // toggleModal={toggleModal}
-            />
-            {/* <Game playerName={this.props.playerName} modalClass={modalClass}/> */}
-            {/* <BrowserRouter>
-                <Route exact path="/xtarfleet" 
-                // render={(props) => <GameplayerName={this.props.playerName} modalClass={modalClass} />} 
-                component={<Game/>}
+        if(!this.state.submitted){
+            return (
+                <div>            
+                {console.log(this.props)}
+                {/* <BrowserRouter>
+                <Route exact 
+                path="/newplayer" 
+                render={ (props) => 
+                    <PlayerForm 
+                        title="Add New Player"
+                        handleSubmit={this.submitHandler} 
+                        button="+ Add Player" 
+                        handleClick={this.clickHandler}
+                        backClick = {this.routeClickHandler}
+                        // route="/player"
+                        playerName={this.props.playerName}
+                    
+                        // playerName={playerName}
+                        // setPlayerName={setPlayerName} 
+                        // id={id} 
+                        // setId={setId}
+                        
+                        match={props.match} 
+                    />
+                }
                 />
-            </BrowserRouter> */}
-</div>        )
+                </BrowserRouter> */}
+
+
+                <PlayerForm
+                    title="Add New Player"
+                    handleSubmit={this.submitHandler} 
+                    button="+ Add Player" 
+                    handleClick={this.clickHandler}
+                    backClick = {this.routeClickHandler}
+                    // route="/player"
+                    playerName={this.props.playerName}
+                    id={this.props.id}
+                    setId={this.props.setId}
+                    // toggleModal={toggleModal}
+                />
+
+
+                {/* <Game playerName={this.props.playerName} modalClass={modalClass}/> */}
+                {/* <BrowserRouter>
+                    <Route exact path="/xtarfleet" 
+                    // render={(props) => <GameplayerName={this.props.playerName} modalClass={modalClass} />} 
+                    component={<Game/>}
+                    />
+                </BrowserRouter> */}
+                </div>        
+            )
+        } else {
+            return(
+                <Game 
+                    playerName={this.props.playerName} 
+                    id={this.props.id} 
+                    setId={this.props.setId} 
+                    // state={this.state.updated}
+                    // updated={this.setState}
+                /> 
+
+
+                // <BrowserRouter>
+                    // <Route exact path="/xtarfleet" 
+                        // render={(props) => <Game playerName={this.props.playerName} match={props.match}  />} 
+                        // component={<Game />}
+                    // />
+                // </BrowserRouter>
+            )
+        }
+
     }
 }
