@@ -8,21 +8,72 @@ import search from "../../assets/icons/search-24px.svg";
 
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo/xtarfleet-logo.png";
-// import { Link } from "react-router-dom";
+
+// import TextField from "@mui/material/TextField";
+
+// function List(props) {
+//   return (
+//       <ul>
+//           {data.map((item) => (
+//               <li key={item.id}>{item.text}</li>
+//           ))}
+//       </ul>
+//   )
+// }
+
+// let data = [{
+//   "id": 1,
+//   "text": "Devpulse"
+// }, {
+//   "id": 2,
+//   "text": "Linklinks"
+// }, {
+//   "id": 3,
+//   "text": "Centizu"
+// }, {
+//   "id": 4,
+//   "text": "Dynabox"
+// }, {
+//   "id": 5,
+//   "text": "Avaveo"
+// }, {
+//   "id": 6,
+//   "text": "Demivee"
+// }, {
+//   "id": 7,
+//   "text": "Jayo"
+// }, {
+//   "id": 8,
+//   "text": "Blognation"
+// }, {
+//   "id": 9,
+//   "text": "Podcat"
+// }, {
+//   "id": 10,
+//   "text": "Layo"
+// }]  
 
 class Leaderboard extends React.Component {
   state = {
     playersData: [],
+    inputText: ""
   };
+
 
   componentDidMount() {
     axios.get(`${API.server}/${API.players}`).then((response) => {
       this.setState({ playersData: response.data });
     });
   }
+  inputHandler = (e) => {
+    //convert input text to lower case
+    var lowerCase = e.target.value.toLowerCase();
+    this.setState({ inputText : lowerCase });
+  };
+
+
 
   render() {
-
     const reload = () => {
       axios
       .get(`${API.server}/${API.players}`)
@@ -41,9 +92,22 @@ class Leaderboard extends React.Component {
           <h1 className="player__title">Leaderboard</h1>
           <div>
             <div className="player__search">
+              {/* <div className="search">
+                <TextField
+                  id="outlined-basic"
+                  variant="outlined"
+                  fullWidth
+                  label="Search"
+                />
+              </div>
+              <List /> */}
+              <label for="q"></label>
               <input
+                onChange={this.inputHandler}
                 className="player__search-input"
-                type="text"
+                type="search"
+                name="q"
+                id="q"
                 placeholder="Search..."
               ></input>
               <img
@@ -52,11 +116,6 @@ class Leaderboard extends React.Component {
                 alt="magnifying glass"
               />
             </div>
-            {/* <Link to={`/players/add`}>
-              <div className="player__button">
-                <p>+ Add New Item</p>
-              </div>
-            </Link> */}
           </div>
         </div>
 
@@ -73,8 +132,6 @@ class Leaderboard extends React.Component {
                 <img src={sort} alt="up and down arrow" />
               </div>
 
-              
-
               <div className="player__table">
                 TIME
                 <img src={sort} alt="up and down arrow" />
@@ -90,7 +147,12 @@ class Leaderboard extends React.Component {
               </div>
             </div>
 
-            {this.state.playersData.map((elem) => {
+            {this.state.playersData
+              .filter((elem)=>{
+                if ( this.state.inputText === "" ) { return elem } 
+                else { return elem.playerName.toLowerCase().includes(this.state.inputText) }
+              })
+              .map((elem) => {
               return (
                 <Player
                   key={elem.id}
@@ -107,53 +169,6 @@ class Leaderboard extends React.Component {
             })}
           </div>
         </div>
-        
-        {/* <table className="player__table__main">
-          <tbody>
-            <tr className="player__table--header">
-              <th className="player__table">
-                PLAYER'S NAME
-                <img src={sort} alt="up and down arrow" />
-              </th>
-
-              <th className="player__table">
-                POINTS
-                <img src={sort} alt="up and down arrow" />
-              </th>
-
-              <th className="player__table">
-                LEVEL
-                <img src={sort} alt="up and down arrow" />
-              </th>
-
-              <th className="player__table">
-                TIME
-                <img src={sort} alt="up and down arrow" />
-              </th>
-
-              <th className="player__table">
-                COUNTRY
-                <img src={sort} alt="up and down arrow" />
-              </th>
-            </tr>
-
-            {this.state.playersData.map((elem) => {
-              return (
-                <Player
-                  key={elem.id}
-                  id={elem.id}
-                  playerName={elem.playerName}
-                  country={elem.country}
-                  description={elem.description}
-                  points={elem.points}
-                  time={elem.time}
-                  status={elem.status}
-                  reload={reload}
-                />
-              );
-            })}
-          </tbody>
-        </table> */}
       </section>
     );
   }

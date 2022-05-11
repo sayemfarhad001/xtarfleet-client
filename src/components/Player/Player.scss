@@ -167,33 +167,41 @@
 
 @media (min-width: partials.$screen-tablet-min) {
   .player {
+    width: 900px;
     &__table--header {
-        display: flex;
+      display: flex;
     }
-    
+    &__table__one{
+      padding: 0 0 0 2rem;
+      width: 18.5%;
+    }
     &__row {
         display: flex;
         flex-direction: row;
+
     //   display: table-row;
-      height: auto;
-      padding: 0 0 0 0;
+        height: auto;
+        padding: 0 0 0 0;
     }
     &__top {
         display: flex;
         flex-direction: row;
+        width: 80%;
     }
     &__bottom {
         width: 20%;
+        display: flex;
+        align-items: center;
     }
     &__splitleft {
         display: flex;
         flex-direction: row;
-        // width: 40%;
+        width: 50%;
     }
     &__splitright {
         display: flex;
         flex-direction: row;
-        // width: 40%;
+        width: 50%;
     }
     &__item {
       margin: 0;
@@ -208,8 +216,10 @@
       padding: 1rem 0 1rem 2rem;
     }
     &__time {
-      min-width: 10rem;
+      // min-width: 10rem;
+      width: 50%;
       padding: 1rem 0;
+      padding-left: 1rem;
     }
     &__status {
         min-width: 10rem;
@@ -223,14 +233,15 @@
         min-width: 6rem;
     }
     &__country--name {
-        width: 10rem;
+        width: 50%;
     //   max-width: 6rem;
       padding: 1rem 0 0 0;
     }
     &__points {
-        min-width: 10rem;
+        // min-width: 10rem;
     //   max-width: 6rem;
-      padding: 1rem 1rem 1rem 0;
+      width: 50%;
+      padding: 1rem 0 1rem 1rem;
     }
     &__subtitle {
       display: none;
@@ -321,15 +332,17 @@
 
 @media (min-width: partials.$screen-computer-min) {
     .player {
-      &__name {
-        min-width: auto;
-      }
-      &__points {
-        max-width: 15rem;
-        & > p {
-          max-width: 15rem;
-        }
-      }
+      
+    width: 900px;
+      // &__name {
+      //   min-width: auto;
+      // }
+      // &__points {
+      //   max-width: 15rem;
+      //   & > p {
+      //     max-width: 15rem;
+      //   }
+      // }
     }
   
 }
