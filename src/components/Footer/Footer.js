@@ -6,8 +6,8 @@ import "./Footer.scss";
 export default function Footer() {
     return (
     <>
-        <Link class="footer__icon" to="https://www.facebook.com/">
-            <img class="footer__icon" 
+        <Link className="footer__icon" to="https://www.facebook.com/">
+            <img className="footer__icon" 
                 // src="./assets/Facebook-Icon.svg" 
                 alt="facebook"></img>
 

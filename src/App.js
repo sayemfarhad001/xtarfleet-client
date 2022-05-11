@@ -37,8 +37,7 @@ function App (){
                   setPlayerName={setPlayerName} 
                   id={id} 
                   setId={setId}
-                  // collectPlayer={this.collectPlayer} 
-                  match={props.match} 
+                  {...props} 
                 />
               }
             >
@@ -50,27 +49,16 @@ function App (){
                   <Game 
                     playerName={playerName} 
                     id={id} 
-                    match={props.match} 
+                    {...props} 
                   />
                 } 
               />
             <Route exact path="/about" component={AboutPage} />
             <Route exact path="/contact" component={ContactPage} />
-            
-
-
-{/* // component={AddPlayerPage}  */}
-
-{/* 
-            <Route exact path="/xtarfleet" 
-                // render={(props) => <GameplayerName={this.props.playerName} modalClass={modalClass} />} 
-                component={<Game/>}
-                /> */}
-
             <Route exact path="/players" component={Leaderboard} />
             <Route
               path="/players/:id"
-              render={(props) => <PlayerDetails match={props.match} />}
+              render={(props) => <PlayerDetails {...props} />}
             />
           </Switch>
         </BrowserRouter>
