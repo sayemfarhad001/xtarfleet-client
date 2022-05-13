@@ -10,7 +10,7 @@ body {
 a.link {
     font-size: 30px;
     color: partials.$yellow;
-    position: relative;
+    // position: relative;
     margin-left: 20rem;
 }
 a.link:link {color:partials.$yellow;}
@@ -31,4 +31,15 @@ a.link:hover {
     height: 600px;
     background: white;
     font-family: 'Orbitron', sans-serif;
+}
+
+.game{
+    &__top{
+        position:fixed
+    }
+
+    &__bottom{
+        display: flex;
+        justify-content: space-between;
+    }
 }

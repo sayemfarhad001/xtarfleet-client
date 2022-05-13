@@ -9,69 +9,23 @@ import search from "../../assets/icons/search-24px.svg";
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo/xtarfleet-logo.png";
 
-// import TextField from "@mui/material/TextField";
-
-// function List(props) {
-//   return (
-//       <ul>
-//           {data.map((item) => (
-//               <li key={item.id}>{item.text}</li>
-//           ))}
-//       </ul>
-//   )
-// }
-
-// let data = [{
-//   "id": 1,
-//   "text": "Devpulse"
-// }, {
-//   "id": 2,
-//   "text": "Linklinks"
-// }, {
-//   "id": 3,
-//   "text": "Centizu"
-// }, {
-//   "id": 4,
-//   "text": "Dynabox"
-// }, {
-//   "id": 5,
-//   "text": "Avaveo"
-// }, {
-//   "id": 6,
-//   "text": "Demivee"
-// }, {
-//   "id": 7,
-//   "text": "Jayo"
-// }, {
-//   "id": 8,
-//   "text": "Blognation"
-// }, {
-//   "id": 9,
-//   "text": "Podcat"
-// }, {
-//   "id": 10,
-//   "text": "Layo"
-// }]  
-
 class Leaderboard extends React.Component {
   state = {
     playersData: [],
-    inputText: ""
+    inputText: ""     //used for search functionality
   };
-
 
   componentDidMount() {
     axios.get(`${API.server}/${API.players}`).then((response) => {
       this.setState({ playersData: response.data });
     });
   }
+
+  // Handler for Search Functionality
   inputHandler = (e) => {
-    //convert input text to lower case
     var lowerCase = e.target.value.toLowerCase();
     this.setState({ inputText : lowerCase });
   };
-
-
 
   render() {
     const reload = () => {
@@ -85,23 +39,14 @@ class Leaderboard extends React.Component {
 
     return (
       <section className="player">
-         <Link to="/">
+         <Link to="/" className="leaderboard__logo__container">
             <img src={logo} className="xtarfleet__logo leaderboard__logo" alt="logo"></img>
           </Link>
         <div className="player__subheader">
           <h1 className="player__title">Leaderboard</h1>
           <div>
             <div className="player__search">
-              {/* <div className="search">
-                <TextField
-                  id="outlined-basic"
-                  variant="outlined"
-                  fullWidth
-                  label="Search"
-                />
-              </div>
-              <List /> */}
-              <label for="q"></label>
+              <label htmlFor="q"></label>
               <input
                 onChange={this.inputHandler}
                 className="player__search-input"
@@ -148,6 +93,7 @@ class Leaderboard extends React.Component {
             </div>
 
             {this.state.playersData
+              // Filter for Search Functionality
               .filter((elem)=>{
                 if ( this.state.inputText === "" ) { return elem } 
                 else { return elem.playerName.toLowerCase().includes(this.state.inputText) }

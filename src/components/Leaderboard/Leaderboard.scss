@@ -2,12 +2,13 @@
 
 .player {
   background-color: partials.$White;
-  margin: 0 1rem;
+  margin: 2rem 1rem;
   position: relative;
-  top: 10rem;
+  text-align: center;
+  // top: 10rem;
   z-index: 6;
-  box-shadow: 0 0.125rem 0.3125rem rgba(19, 24, 44, 0.1);
-  border-radius: 0.25rem;
+  box-shadow: 0 10px 10px rgba(0, 0, 0, 0.75);
+  border-radius: 0.75rem;
   &__subheader {
     font-family: "Titillium Web";
     padding: 1.5rem;
@@ -70,9 +71,16 @@
   }
 }
 
+.player:hover{
+  box-shadow: 4px 4px 4px #183B54;
+	@media screen and (min-width: partials.$screen-tablet-min) { /* Specific to this particular image */
+		transform: scaleX(1.05) scaleY(1.05) translate(0px, 15px);
+	}
+}
 @media (min-width: partials.$screen-tablet-min) {
   .player {
-    top: 6rem;
+    margin: 5rem auto;
+    // text-align: center;
     &__subheader {
       display: flex;
       justify-content: space-between;
@@ -121,14 +129,19 @@
 
 @media (min-width: partials.$screen-computer-min) {
     .player {
-      margin: auto;
-      max-width: 66rem;
+      // margin: auto;
+      // max-width: 66rem;
+      margin: 5rem auto;
+      // text-align: center;
     }
 }
-
+.leaderboard__logo__container{
+  width: 100%;
+}
 .leaderboard__logo {
     margin-top: 1rem;
     margin-left: 1rem;
+    text-align: center;
     border-radius: 30px;
     background-image: linear-gradient(to bottom, partials.$blue , partials.$yellow);
     width: max-content;

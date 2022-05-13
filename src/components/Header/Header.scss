@@ -61,14 +61,14 @@
         color: white;
         border: none;
         background-color: transparent;
-        border-radius: 0.25rem;
-    
+        border-radius: 0.75rem;
+        box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.75);
         width: 6.6875rem;
         height: 2.375rem;
         left: 59.0625rem;
         top: 1.75rem;
     
-        @media (max-width: partials.$screen-tablet-min) {
+        @media (min-width: partials.$screen-tablet-min) {
             // border-radius: 0.25rem;
             width: 10.25rem;
             height: 2.25rem;   
@@ -78,32 +78,93 @@
     }
 }
 
-
-.header__home:hover {
-    background-color:#13182C;
+.xtarfleet__logo{
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.75);
+    background-color: partials.$gold;
+    border-radius: 20px;
+    padding-top: 1rem ;
+    padding-right: 1rem ;
+    padding-left: 1rem ;
+    padding-bottom: 0.5rem ;
+    margin-bottom: 1rem;
+    text-align: center;
 }
-
-.header__playNow:hover {
-    background-color:#13182C;
+.xtarfleet__logo:hover{
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.75);
+    background-color: transparent;
+    border-radius: 20px;
+    padding-top: 1rem ;
+    padding-right: 1rem ;
+    padding-left: 1rem ;
+    padding-bottom: 0.5rem ;
+    text-align: center;
+    // transform: scaleX(1.1) scaleY(1.1);
 }
-
 .header__playNow {
+    box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.75);
     color: white;
     background-color: transparent;
     border: none;
-    border-radius: 0.25rem;
+    border-radius: 0.75rem;
     width: 6.6875rem;
     height: 2.375rem;
     left: 59.0625rem;
     top: 1.75rem;
 
  
-    @media (max-width: 47.9375rem) {
+    @media (min-width: partials.$screen-tablet-min) {
         // border-radius: 1.25rem;
         width: 10.25rem;
         height: 2.25rem;
     }
 }
+
+.header__home:hover {
+    background-color:#13182C;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.75);
+}
+
+
+.header__playNow:hover {
+    background-color:#13182C;
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.75);
+}
+
+.header__nav__common{
+    margin-bottom: 2rem;
+
+
+}
+// .is-active {
+//     // background-color:;
+//     // color: white;
+//     // border: none;
+//     // border-radius: 0.25rem;
+//     // width: 6.6875rem;
+//     // // height: 2.375rem;
+    
+//     // // left: 59.0625rem;
+//     // // top: 1.75rem;
+//     // // padding: 1rem ;
+//     // @media (min-width: partials.$screen-tablet-min) {
+//         color: red;
+//         border-radius: 50%;
+//     //     background-color:#13182C;
+//     //     // width: 10.25rem;
+//     //     // height: 2.375rem;
+//     // }
+// }
+.is-active {
+    width: 100%;
+    height: 100%;
+    background-color:#13182C;
+    border-radius: 0.75rem;
+    padding-top: 6px ;
+    padding-bottom: 12px;
+}
+
+
+
 
 // .header__instock {
 //     color: white;
@@ -120,7 +181,9 @@
     max-width: 16.625rem;
     max-height: 2rem;
     padding-top: 1rem;
-    padding-left: 1rem;   
+    padding-left: 1rem;
+    
+    
     // margin: auto;
 
     // @media (min-width: partials.$screen-computer-min) {

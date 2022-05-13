@@ -46,7 +46,8 @@ export default class AddPlayerPage extends Component {
         //     })
         //     .catch((err) => console.log("error!", err));
 
-
+        let wow = document.querySelector('#aaud');
+        wow.play();
     }
 
     clickHandler = () => {

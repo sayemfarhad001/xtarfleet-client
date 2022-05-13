@@ -3,7 +3,10 @@ import * as React from 'react';
 import axios from 'axios';
 import { Link } from "react-router-dom";
 import API from "../API/API"
-import Leaderboard from '../Leaderboard/Leaderboard';
+import MyStopwatch from '../MyStopwatch/MyStopwatch';
+import Header from '../Header/Header'
+import Footer from '../Footer/Footer'
+
 function Game({ playerName, id, setId, 
     // updated, state 
 }) {
@@ -444,7 +447,6 @@ function Game({ playerName, id, setId,
             ctx.font = '30px Orbitron';
             ctx.fillText('Score: ' + score, 180, 40);
             ctx.fillText('Resources: ' + numberOfResources, 180, 80);
-            
             if (gameOver){
                 console.log (score +' '+ playerName +' '+ id)
                  
@@ -542,21 +544,27 @@ function Game({ playerName, id, setId,
     }, [playerName, id, setId]);
     
     return (
+        
         <div className='game'>
-            <canvas
-                id="canvas"
-                ref={canvasRef}
-                // width={900}
-                // height={600}
-                style={{
-                // border: '2px solid #000',
-                borderRadius: '10px',
-                marginTop: 10,
-                }}
-            ></canvas><br></br>
-            <Link className="link" to={`/`}>
-              I can't take it anymore. Please take me Home!
-            </Link>
+            <MyStopwatch />
+            <div className="game__bottom">
+                <canvas
+                    id="canvas"
+                    ref={canvasRef}
+                    // width={900}
+                    // height={600}
+                    style={{
+                    // border: '2px solid #000',
+                    borderRadius: '10px',
+                    marginTop: 10,
+                    }}
+                ></canvas>
+            </div>
+            <div className="game__bottom">
+                <Link className="link" to={`/`}>
+                I can't take it anymore. Please take me Home!
+                </Link>
+            </div>
         </div>
     );
 }

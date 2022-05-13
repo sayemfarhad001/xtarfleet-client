@@ -85,9 +85,9 @@
     $Red: #C94515; //" Out of Stock" label, error states, delete icon
 
 //Breakpoints Mobile and Computer
-    $screen-mobile-max: 46.875rem;
-    $screen-tablet-min: 46.9375rem;
-    $screen-computer-min: 75rem;
+    $screen-mobile-max: 767px;
+    $screen-tablet-min: 768px;
+    $screen-computer-min: 1024px;
 
 //Buttons
         @mixin dtButton {
