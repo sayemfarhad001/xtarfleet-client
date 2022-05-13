@@ -119,21 +119,24 @@ class PlayerForm extends Component {
         </div>
         <form className="playerForm__form" onSubmit={this.submitHandler}>
           <div className="playerForm__form-container">
-            <div className="playerForm__itemDetails">
+            <div className="playerForm__itemDetails playerForm__details playerForm__details--left">
+            
               <h2 className="playerForm__form--title">Player Details</h2>
+              
               <label className="playerForm__form--label" htmlFor="playerName">
                 Player Name
               </label>
+
               <input
                 className="playerForm__form--input"
                 type="text"
                 name="playerName"
                 id="playerName"
-                placeholder="Item Name"
+                placeholder="Player Name"
                 value={this.state.playerName}
                 onChange={this.changeHandler}
               />
-              {this.state.nameError ? (
+              { this.state.nameError ? (
                 <div className="playerForm__error">
                   <img
                     className="playerForm__error--image"
@@ -144,7 +147,7 @@ class PlayerForm extends Component {
                     {this.state.nameError}
                   </p>
                 </div>
-              ) : null}
+              ) : null }
 
               <label
                 className="playerForm__form--label"
@@ -221,7 +224,7 @@ class PlayerForm extends Component {
                 </div>
               ) : null} */}
             </div>
-            <div className="playerForm__availability">
+            <div className="playerForm__availability playerForm__details playerForm__details--right">
               <h2 className="playerForm__form--title">Player Level</h2>
               <label className="playerForm__form--label" htmlFor="status">
                 Rookie or Legendary???

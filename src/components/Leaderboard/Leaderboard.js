@@ -8,11 +8,11 @@ import search from "../../assets/icons/search-24px.svg";
 
 import { Link } from "react-router-dom";
 import logo from "../../assets/logo/xtarfleet-logo.png";
-// import { Link } from "react-router-dom";
 
 class Leaderboard extends React.Component {
   state = {
     playersData: [],
+    inputText: ""     //used for search functionality
   };
 
   componentDidMount() {
@@ -21,8 +21,13 @@ class Leaderboard extends React.Component {
     });
   }
 
-  render() {
+  // Handler for Search Functionality
+  inputHandler = (e) => {
+    var lowerCase = e.target.value.toLowerCase();
+    this.setState({ inputText : lowerCase });
+  };
 
+  render() {
     const reload = () => {
       axios
       .get(`${API.server}/${API.players}`)
@@ -34,16 +39,20 @@ class Leaderboard extends React.Component {
 
     return (
       <section className="player">
-         <Link to="/">
+         <Link to="/" className="leaderboard__logo__container">
             <img src={logo} className="xtarfleet__logo leaderboard__logo" alt="logo"></img>
           </Link>
         <div className="player__subheader">
           <h1 className="player__title">Leaderboard</h1>
           <div>
             <div className="player__search">
+              <label htmlFor="q"></label>
               <input
+                onChange={this.inputHandler}
                 className="player__search-input"
-                type="text"
+                type="search"
+                name="q"
+                id="q"
                 placeholder="Search..."
               ></input>
               <img
@@ -52,11 +61,6 @@ class Leaderboard extends React.Component {
                 alt="magnifying glass"
               />
             </div>
-            {/* <Link to={`/players/add`}>
-              <div className="player__button">
-                <p>+ Add New Item</p>
-              </div>
-            </Link> */}
           </div>
         </div>
 
@@ -73,8 +77,6 @@ class Leaderboard extends React.Component {
                 <img src={sort} alt="up and down arrow" />
               </div>
 
-              
-
               <div className="player__table">
                 TIME
                 <img src={sort} alt="up and down arrow" />
@@ -90,7 +92,13 @@ class Leaderboard extends React.Component {
               </div>
             </div>
 
-            {this.state.playersData.map((elem) => {
+            {this.state.playersData
+              // Filter for Search Functionality
+              .filter((elem)=>{
+                if ( this.state.inputText === "" ) { return elem } 
+                else { return elem.playerName.toLowerCase().includes(this.state.inputText) }
+              })
+              .map((elem) => {
               return (
                 <Player
                   key={elem.id}
@@ -107,53 +115,6 @@ class Leaderboard extends React.Component {
             })}
           </div>
         </div>
-        
-        {/* <table className="player__table__main">
-          <tbody>
-            <tr className="player__table--header">
-              <th className="player__table">
-                PLAYER'S NAME
-                <img src={sort} alt="up and down arrow" />
-              </th>
-
-              <th className="player__table">
-                POINTS
-                <img src={sort} alt="up and down arrow" />
-              </th>
-
-              <th className="player__table">
-                LEVEL
-                <img src={sort} alt="up and down arrow" />
-              </th>
-
-              <th className="player__table">
-                TIME
-                <img src={sort} alt="up and down arrow" />
-              </th>
-
-              <th className="player__table">
-                COUNTRY
-                <img src={sort} alt="up and down arrow" />
-              </th>
-            </tr>
-
-            {this.state.playersData.map((elem) => {
-              return (
-                <Player
-                  key={elem.id}
-                  id={elem.id}
-                  playerName={elem.playerName}
-                  country={elem.country}
-                  description={elem.description}
-                  points={elem.points}
-                  time={elem.time}
-                  status={elem.status}
-                  reload={reload}
-                />
-              );
-            })}
-          </tbody>
-        </table> */}
       </section>
     );
   }

@@ -11,6 +11,8 @@ import AddPlayerPage from "./pages/AddPlayerPage";
 // import PlayerForm from "./components/PlayerForm/PlayerForm";
 import Leaderboard from "./components/Leaderboard/Leaderboard";
 import PlayerDetails from "./components/PlayerDetails/PlayerDetails";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
 
 function App (){
   // state = {
@@ -26,7 +28,9 @@ function App (){
   // render() {
     return (
       <div className="App">
+        
         <BrowserRouter>
+          <Header />
           <Switch>
             <Route exact path="/" component={HomePage} />
             <Route exact 
@@ -61,7 +65,9 @@ function App (){
               render={(props) => <PlayerDetails {...props} />}
             />
           </Switch>
+          <Footer/>
         </BrowserRouter>
+        
       </div>
     );
   // }
