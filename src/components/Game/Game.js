@@ -4,21 +4,12 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import API from "../API/API"
 import MyStopwatch from '../MyStopwatch/MyStopwatch';
-import Header from '../Header/Header'
-import Footer from '../Footer/Footer'
 
-function Game({ playerName, id, setId, 
-    // updated, state 
-}) {
+function Game({ playerName, id, setId }) {
 
     // const [playerName, setPlayerName] = React.useState('');
     
     const canvasRef = React.useRef(null);
-    // console.log(playerName, id)
-    // React.useEffect(() => {
-    //     return(<p className='up'>welcome ${playerName}</p>)
-    // }, [playerName]);
-
     React.useEffect(() => {
         const canvas = canvasRef.current
         const ctx = canvas.getContext('2d')
@@ -327,7 +318,6 @@ function Game({ playerName, id, setId,
         const enemyTypes = [];
         const enemy1 = new Image();
         enemy1.src = './assets/enemy1.png';
-        // console.log(enemy1)
         enemyTypes.push(enemy1);
 
         const enemy2 = new Image();
@@ -448,12 +438,10 @@ function Game({ playerName, id, setId,
             ctx.fillText('Score: ' + score, 180, 40);
             ctx.fillText('Resources: ' + numberOfResources, 180, 80);
             if (gameOver){
-                console.log (score +' '+ playerName +' '+ id)
-                 
+                // console.log (score +' '+ playerName +' '+ id)
                 ctx.fillStyle = 'black';
                 ctx.font = '90px Orbitron';
                 ctx.fillText('GAME OVER', 135, 330);
-
             }
             if (score >= winningScore && enemies.length === 0){
                 ctx.fillStyle = 'gold';
@@ -463,9 +451,7 @@ function Game({ playerName, id, setId,
                 ctx.fillText('LEVEL COMPLETE', 130, 300);
                 ctx.font = '30px Orbitron';
                 ctx.fillText('You win with ' + score + ' points!', 134, 340);
-                 
                 // console.log (score , playerName, id)
-               
                 return axios.put(`${API.server}/${API.players}/${id}`, {
                     playerName: playerName,
                     points: score,
@@ -474,16 +460,14 @@ function Game({ playerName, id, setId,
                 .then(function (response) {
                     // updated({ updated: true })
                     // setId(response.id);
-
                     // if(state){
                     //     return <Leaderboard />
                     // }
-                    console.log(response);
+                    // console.log(response);
                 })
                     .catch(function (error) {
                     console.log(error);
                 });
-                
             }
         }
         
@@ -546,17 +530,15 @@ function Game({ playerName, id, setId,
     return (
         
         <div className='game'>
-            <MyStopwatch />
-            <div className="game__bottom">
+            
+            <div className="game__top">
+                <MyStopwatch />
                 <canvas
                     id="canvas"
                     ref={canvasRef}
-                    // width={900}
-                    // height={600}
                     style={{
-                    // border: '2px solid #000',
-                    borderRadius: '10px',
-                    marginTop: 10,
+                        borderRadius: '10px',
+                        marginTop: 10,
                     }}
                 ></canvas>
             </div>

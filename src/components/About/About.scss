@@ -1,0 +1,63 @@
+@use "../../styles/partials.scss";
+
+.about__section{
+	margin-left: 5%;
+	margin-right: 5%;
+	margin-bottom: 4rem;
+}
+.about__container {
+	min-width: 100%;
+    max-width: 100%;
+	border-radius: 0.75rem;
+	margin-top: 50px;
+	padding: 1rem;
+	box-shadow: 10px 10px 10px rgba(0, 0, 0, 0.75);
+    background-color: partials.$White;
+	opacity: 0.8;
+    text-align: center;
+	color: #183B54;
+	font-family: "Orbitron";
+	font-size: 2.2rem;
+	font-weight: 400; 
+	@media screen and (min-width: partials.$screen-computer-min) {
+		width: 1024px;
+		background-position: center;
+	}
+}
+.about__container:hover {
+	box-shadow: 4px 4px 4px #183B54;
+}
+.about__card{
+    font-size: 1rem;
+    padding-top: 1rem 2rem 1rem 2rem ;
+    background: #F4F9FD;
+    box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 0.75rem;
+    text-align: start;
+    @media screen and (min-width: partials.$screen-tablet-min) { 
+        font-size: 2rem;
+    }
+    &__title__container{
+        padding-left: 1rem;
+        padding-top: 0.5rem;
+    }
+    &__list__container{
+        padding-bottom: 1rem;
+    }
+}
+.about__card:hover {
+    box-shadow: 4px 4px 4px #183B54;
+}
+.about__title__container{
+    display:flex;
+    justify-content: center;
+}
+.about__title__container >p {
+    min-width: 25%;
+    border-radius: 0.75rem;
+    padding: 0 2rem 0 2rem;
+    box-shadow: 10px 20px 10px rgba(0, 0, 0, 0.25);
+}
+.about__title__container >p:hover {
+    box-shadow: 4px 4px 4px #183B54;
+}

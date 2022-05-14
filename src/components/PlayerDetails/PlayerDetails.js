@@ -1,9 +1,9 @@
 import React from "react";
-import arrowBack from "../../assets/icons/arrow_back-24px.svg";
-// import edit from "../../assets/icons/edit-24px.svg";
-import "./PlayerDetails.scss";
-import axios from "axios";
 import { Link } from "react-router-dom";
+import axios from "axios";
+
+import arrowBack from "../../assets/icons/arrow_back-24px.svg";
+import "./PlayerDetails.scss";
 
 export default class PlayerDetails extends React.Component {
     state = {
@@ -32,18 +32,7 @@ export default class PlayerDetails extends React.Component {
                 </Link>
                 <h4>{playerName}</h4>
               </div>
-              {/* <div className="player__details--edit">
-                <Link to={`/players/${id}/edit`}>
-                  <img
-                    className="player__details--edit-icon"
-                    alt="pencil"
-                    src={edit}
-                  />
-                  <p className="player__details--edit-text">Edit</p>
-                </Link>
-              </div> */}
             </div>
-    
             <div className="player__details--container">
               <div className="player__details--container-left">
                 <div className="player__details--desc">

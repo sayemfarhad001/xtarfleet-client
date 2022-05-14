@@ -1,4 +1,3 @@
-// import react from "react"
 import { useStopwatch } from 'react-timer-hook';
 
 function MyStopwatch() {
@@ -7,14 +6,14 @@ function MyStopwatch() {
     minutes,
     hours,
     days,
-    isRunning,
+    // isRunning,
     start,
     pause,
-    reset,
+    // reset,
   } = useStopwatch({ autoStart: true });
   return (
-    <div style={{textAlign: 'center'}}>
-      <div style={{fontSize: '20px', color:"yellow"}}>
+    <div onClick={ ()=>{pause===true ? start() : pause()}} className="game__timer" style={{textAlign: 'center'}}>
+      <div className="game__timer__font" style={{fontSize: '3rem', color:"gold"}}>
         <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
       </div>
       {/* <p>{isRunning ? 'Running' : 'Not running'}</p> */}
