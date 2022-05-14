@@ -1,25 +1,30 @@
 @use "../../styles/partials.scss";
-// .up{
-//     z-index: 20;
-// color: white;
-// }
+
+@mixin tablet {
+    @media (min-width: partials.$screen-tablet-min) {
+      @content;
+    }
+  }
+  
+  @mixin desktop {
+    @media (min-width: partials.$screen-computer-min) {
+      @content;
+    }
+  }
+
 body {
     background: partials.$blue;
-
 }
 a.link {
     font-size: 30px;
     color: partials.$yellow;
-    // position: relative;
-    margin-left: 20rem;
 }
 a.link:link {color:partials.$yellow;}
 a.link:visited {color:partials.$yellow;}
 a.link:hover {
     color:partials.$blue;
     background-color: partials.$yellow;
-    border-radius: 5px;
-    // font-size:110%;       
+    border-radius: 5px;       
 }
 
 #canvas {
@@ -34,12 +39,19 @@ a.link:hover {
 }
 
 .game{
-    &__top{
-        position:fixed
+    &__timer{
+        position:absolute;
+        top:10rem;
+        right:20%;
+        z-index:100;
+        &__font{
+        	font-family: "Orbitron";
+        }
+		@include tablet {
+			margin-right: 5rem;
+		}
     }
-
     &__bottom{
-        display: flex;
-        justify-content: space-between;
+        text-align: center;
     }
 }
