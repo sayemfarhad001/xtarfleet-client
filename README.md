@@ -1,7 +1,7 @@
 # WD Diploma - Capstone Project
 **Project Title:** Xtarfleet  
 **Author:** Sayem Mohd Farhad  
-**Cohort:** Web Development 2022 (Part-time)
+**Cohort:** Web Development 2022
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 # Setup Instructions
 You will need to download the client git repositories in order to run this app. You will also need to clone the server repo, which can be found 
